@@ -1,0 +1,14 @@
+.element__text-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 25px 20px 25px 21px;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+}

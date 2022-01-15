@@ -1,0 +1,15 @@
+.header__close-btn {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  background-image: url('../../../images/closeButton.svg');
+  background-position: center;
+  background-size:cover;
+  cursor: pointer;
+  font-size: 0;
+}
+.header__close-btn_active {
+  display: block;
+}

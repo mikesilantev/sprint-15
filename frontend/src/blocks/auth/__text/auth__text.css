@@ -1,0 +1,17 @@
+.auth__text {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #fff;
+  margin: 15px 0 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+}
+@media screen and (max-width: 620px){
+  .auth__text {
+    margin: 20px 0 0;
+  }
+}

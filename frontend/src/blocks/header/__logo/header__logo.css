@@ -1,0 +1,21 @@
+.header__logo {
+    display: block;
+    width: 141px;
+    height: 33px;
+    background-size: contain;
+    -webkit-transition: linear .5s;
+    -o-transition: linear .5s;
+    transition: linear .5s;
+}
+.header__logo:hover{
+    opacity: .2;
+    -webkit-transition: linear .5s;
+    -o-transition: linear .5s;
+    transition: linear .5s;
+}
+@media screen and (max-width: 320px){
+    .header__logo {
+        width: 103px;
+        height: 24px;
+    }
+}
