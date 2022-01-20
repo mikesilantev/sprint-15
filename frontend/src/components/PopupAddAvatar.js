@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function PopupAddAvatar({ isOpen, onClose, onUpdateAvatar, submitTextPopup}){
