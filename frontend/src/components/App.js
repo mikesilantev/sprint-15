@@ -71,6 +71,8 @@ function App() {
       .register(data)
       .then((res) => {
         setUserEmail(res.email);
+        console.log((res))
+        console.log((res.email))
         //setUserEmail(res.data.email);
       })
       .then(() =>{
