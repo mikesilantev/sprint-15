@@ -52,8 +52,10 @@ function App() {
     if (jwt) {
       auth.checkUserToken(jwt)
         .then((res) => {
-          setUserEmail(res.data.email);
           setLoggedIn(true);
+          setUserEmail(res.email);
+          // setUserEmail(res.data.email);
+          // setLoggedIn(true);
           navigate('/');
         })
         .catch((err) => {
