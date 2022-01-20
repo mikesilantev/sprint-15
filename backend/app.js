@@ -75,7 +75,7 @@ app.post(
       email: Joi.string().required().email(),
       password: Joi.string()
         .required()
-        .regex(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/),
+        .pattern(new RegExp(/^[A-Za-z0-9]{8,30}$/)),
       name: Joi.string().regex(/^[a-z0-9_-]{2,30}$/),
       about: Joi.string().min(2).max(30),
       avatar: Joi.string().regex(
