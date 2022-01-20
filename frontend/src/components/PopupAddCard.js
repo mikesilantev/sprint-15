@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function PopupAddCard({ isOpen, onClose, onAddPlace,submitTextPopup }) {
