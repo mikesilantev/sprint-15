@@ -70,7 +70,8 @@ function App() {
     auth
       .register(data)
       .then((res) => {
-        setUserEmail(res.data.email);
+        setUserEmail(res.email);
+        //setUserEmail(res.data.email);
       })
       .then(() =>{
         handleOnLogin(data);
