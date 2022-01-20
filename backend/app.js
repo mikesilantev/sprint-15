@@ -29,7 +29,7 @@ const app = express();
 const allowedCors = [
   'http://mike.nomoredomains.rocks',
   'https://mike.nomoredomains.rocks',
-  'localhost:3000'
+  'http://localhost:3000'
 ]
 
 app.use(function(req, res, next) {
