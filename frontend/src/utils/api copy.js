@@ -21,7 +21,7 @@ class Api {
 
   // 1. Загрузка информации о пользователе с сервера
   getStartUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}${this._cohortId}${this._categoryUser}`, {
       headers: {
         authorization: this._token,
       },
@@ -30,7 +30,7 @@ class Api {
 
   // 2. Загрузка карточек с сервера
   getCards() {
-    return fetch(`${this._baseUrl}/cards/`, {
+    return fetch(`${this._baseUrl}${this._cohortId}${this._categoryCards}`, {
       headers: {
         authorization: this._token,
         "Content-type": this._contentType,

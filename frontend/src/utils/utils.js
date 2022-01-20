@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/',
+  baseUrl: 'https://api.mike.nomoredomains.rocks/signup',
   cohordId: 'cohort-28/',
   token: 'bbe86369-4e99-4c5c-b094-65bb0c28828a',
   categoryUser: 'users/me',
@@ -10,7 +10,7 @@ const apiConfig = {
 };
 
 const authConfig = {
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "https://api.mike.nomoredomains.rocks/signup",
 };
 
 export {
