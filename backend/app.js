@@ -28,7 +28,7 @@ const app = express();
 const allowedCors = [
   'http://mike.nomoredomains.rocks',
   'https://mike.nomoredomains.rocks',
-  'localhost:3000'
+  'http://localhost:3000'
 ]
 
 app.use(function(req, res, next) {
@@ -38,8 +38,8 @@ app.use(function(req, res, next) {
   const requestHeaders = req.headers['access-control-request-headers'];
 
   if(allowedCors.includes(origin)){
-    res.header('Access-Control-Allow-Origin', "*");
-    // res.header('Access-Control-Allow-Origin', origin);
+    // res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
   }
 
