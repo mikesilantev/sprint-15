@@ -16,6 +16,7 @@ class Auth {
   register({email, password}) {
     return fetch(`${this._url}/signup`, {
       method: "POST",
+      credentials: 'include',
       headers: {
         "Content-type": "applicatlsion/json",
       },
