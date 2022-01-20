@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -29,7 +29,7 @@ const app = express();
 const allowedCors = [
   'http://mike.nomoredomains.rocks',
   'https://mike.nomoredomains.rocks',
-  'http://localhost:3000'
+  'localhost:3000'
 ]
 
 app.use(function(req, res, next) {
