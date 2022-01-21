@@ -29,6 +29,8 @@ const limiter = rateLimit({
   max: 100,
 });
 
+require('dotenv').config();
+
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
@@ -77,4 +79,6 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Сервер на порту ${PORT}`);
+  // eslint-disable-next-line no-console
+  console.log(process.env.JWT_SECRET);
 });
