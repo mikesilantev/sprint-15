@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const {
@@ -8,9 +8,8 @@ const {
   errors,
   Segments,
 } = require('celebrate');
+const mongoose = require('mongoose');
 const { mongoUrl, mongoConfig } = require('./utils/utils');
-// Validation
-
 // Routes
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -25,11 +24,17 @@ const { login, createUser } = require('./controllers/users');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-// db connect
-mongoose.connect(mongoUrl, mongoConfig);
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
+app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect(mongoUrl, mongoConfig);
 
 app.post(
   '/signin',
@@ -69,7 +74,6 @@ app.all('*', () => {
 app.use(errors());
 app.use(errorHandler);
 
-// app.use(express.static('public'));
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Сервер на порту ${PORT}`);
