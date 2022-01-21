@@ -1,4 +1,4 @@
-// require('dotenv').config();
+
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -25,7 +25,7 @@ const { login, createUser } = require('./controllers/users');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-
+require('dotenv').config();
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
