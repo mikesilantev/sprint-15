@@ -15,6 +15,7 @@ const { mongoUrl, mongoConfig } = require('./utils/utils');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 // Middlewarezzz
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errors');
 // Errors
@@ -30,6 +31,7 @@ const limiter = rateLimit({
   max: 100,
 });
 
+app.use(requestLogger);
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
@@ -72,6 +74,7 @@ app.all('*', () => {
   throw new NotFoundError('Запрошен несуществующий роутер');
 });
 
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
