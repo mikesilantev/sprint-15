@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const {
   celebrate,
@@ -26,7 +27,7 @@ const app = express();
 
 // db connect
 mongoose.connect(mongoUrl, mongoConfig);
-
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
