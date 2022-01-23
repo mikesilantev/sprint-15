@@ -4,7 +4,9 @@ const UnauthorizedError = require('../errors/unauthorized-err');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-const extractBearerToken = (header) => header.replace('Bearer ', '');
+function extractBearerToken(header) {
+  return header.replace('Bearer ', '');
+}
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
