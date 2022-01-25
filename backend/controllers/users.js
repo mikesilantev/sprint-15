@@ -11,15 +11,15 @@ const UnauthorizedError = require('../errors/unauthorized-err');
 
 // login
 const login = (req, res, next) => {
+  const { NODE_ENV, JWT_SECRET } = process.env;
   const { email, password } = req.body;
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({
-        token: jwt.sign({ _id: user._id }, 'super-strong-secret', {
-          expiresIn: '7d',
-        }),
-      });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {expiresIn: '7d'});
+      res.cookie('jwt', token, {httpOnly: true }).status(200).send({ token: token });
     })
+
     .catch((err) => {
       if (err.message === 'Неправильные почта или пароль') {
         next(new UnauthorizedError('Неправильные почта или пароль'));
@@ -162,3 +162,53 @@ module.exports = {
   login,
   getCurrentUser,
 };
+
+
+// // login
+// const login = (req, res, next) => {
+//   const { NODE_ENV, JWT_SECRET } = process.env;
+//   const { email, password } = req.body;
+
+//   return User.findUserByCredentials(email, password)
+
+//     .then((user) => {
+//       res.send({
+//         token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {expiresIn: '7d'}),
+//       });
+//     })
+//     // old =(
+//     // .then((user) => {
+//     //   res.send({
+//     //     token: jwt.sign({ _id: user._id }, 'super-strong-secret', {
+//     //       expiresIn: '7d',
+//     //     }),
+//     //   });
+//     // })
+//     .catch((err) => {
+//       if (err.message === 'Неправильные почта или пароль') {
+//         next(new UnauthorizedError('Неправильные почта или пароль'));
+//       } else {
+//         next(err);
+//       }
+//     });
+// };
+
+// // login
+// const login = (req, res, next) => {
+//   const { NODE_ENV, JWT_SECRET } = process.env;
+//   const { email, password } = req.body;
+
+//   return User.findUserByCredentials(email, password)
+//     .then((user) => {
+//       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {expiresIn: '7d'});
+//       res.cookie('jwt', token, {httpOnly: true }).status(200).send({ token: token });
+//     })
+
+//     .catch((err) => {
+//       if (err.message === 'Неправильные почта или пароль') {
+//         next(new UnauthorizedError('Неправильные почта или пароль'));
+//       } else {
+//         next(err);
+//       }
+//     });
+// };
