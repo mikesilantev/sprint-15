@@ -1,0 +1,12 @@
+.link {
+    text-decoration: none;
+    -webkit-transition: linear .3s;
+    -o-transition: linear .3s;
+    transition: linear .3s;
+}
+.link:hover {
+    opacity: .6;
+    -webkit-transition: linear .3s;
+    -o-transition: linear .3s;
+    transition: linear .3s;
+}

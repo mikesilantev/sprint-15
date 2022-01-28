@@ -1,0 +1,11 @@
+.profile__info {
+    display: grid;
+    grid-template-areas: 
+    "title button"
+    "subtitle subtitle";
+}
+@media screen and (max-width: 450px){
+    .profile__info {
+        margin-top: 26px;
+    }
+} 

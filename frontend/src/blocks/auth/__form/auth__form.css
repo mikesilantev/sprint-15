@@ -1,0 +1,10 @@
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+@media screen and (max-width: 620px){
+  .auth__form {
+    margin-top: 40px;
+  }
+}

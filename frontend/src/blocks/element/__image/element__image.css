@@ -1,0 +1,19 @@
+.element__image {
+    width: 100%;
+    height: 282px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    display: block;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px){
+    .element__image {
+        height: 361px;
+    }
+}
+@media screen and (max-width: 320px){
+    .element__image {
+        height: 282px;
+    }
+}

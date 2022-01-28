@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const {
   celebrate,
@@ -9,59 +8,29 @@ const {
   errors,
   Segments,
 } = require('celebrate');
-const mongoose = require('mongoose');
 const { mongoUrl, mongoConfig } = require('./utils/utils');
+// Validation
+
 // Routes
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 // Middlewarezzz
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errors');
+const cors = require('./middlewares/cors');
 // Errors
 const NotFoundError = require('./errors/not-found-err');
 
 const { login, createUser } = require('./controllers/users');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3020 } = process.env;
 const app = express();
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
-const allowedCors = [
-  'https://mike.nomoredomains.rocks',
-  'http://mike.nomoredomains.rocks',
-  'http://localhost:3000'
-];
-
-app.use(function(req, res, next) {
-  const { origin } = req.headers;
-  const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  const requestHeaders = req.headers['access-control-request-headers'];
-
-  if(allowedCors.includes(origin)){
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', true);
-  }
-
-  if(method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-    res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.end();
-  }
-  next();
-});
-
-app.use(requestLogger);
-app.use(limiter);
-app.use(helmet());
+// db connect
+mongoose.connect(mongoUrl, mongoConfig);
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-mongoose.connect(mongoUrl, mongoConfig);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -104,13 +73,13 @@ app.all('*', () => {
   throw new NotFoundError('Запрошен несуществующий роутер');
 });
 
-app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
+// app.use(express.static('public'));
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Сервер на порту ${PORT}`);
-  // eslint-disable-next-line no-console
+  console.log(process.env.NODE_ENV);
   console.log(process.env.JWT_SECRET);
 });
