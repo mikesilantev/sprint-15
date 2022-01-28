@@ -23,7 +23,7 @@ const NotFoundError = require('./errors/not-found-err');
 
 const { login, createUser } = require('./controllers/users');
 
-const { PORT = 3020 } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 
 // db connect
