@@ -1,0 +1,24 @@
+.element__like {
+    border: none;
+    width: 22px;
+    height: 19px;
+    background: none;
+    background-image: url('../../../images/like.svg');
+    cursor: pointer;
+    font-size: 0;
+    -webkit-transition: linear .3s;
+    -o-transition: linear .3s;
+    transition: linear .3s;
+}
+.element__like:hover{
+    opacity: .5;
+    -webkit-transition: linear .3s;
+    -o-transition: linear .3s;
+    transition: linear .3s;
+}
+.element__like:active, .element__like:focus{
+    outline: none;
+}
+.element__like::-moz-focus-inner {
+    border: 0;
+  }
